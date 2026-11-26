@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>THE LAST SIGNAL - Physics Yard (Cannon-es prototype)</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #10141c; font-family: system-ui, sans-serif; }
+  #app { position: fixed; inset: 0; }
+  canvas { display: block; touch-action: none; }
+  #hud {
+    position: fixed; top: 10px; left: 10px; z-index: 10;
+    background: rgba(10, 14, 22, 0.78); color: #e8e8e8;
+    border: 1px solid #3a4a5a; border-radius: 8px; padding: 10px 12px;
+    font-size: 13px; line-height: 1.5; max-width: 320px;
+  }
+  #hud h1 { font-size: 14px; margin: 0 0 4px 0; color: #ffd166; letter-spacing: 0.5px; }
+  #hud .keys { color: #9fd0ff; }
+  #hud #stats { margin-top: 6px; color: #b8c4d0; font-size: 12px; }
+  #resetBtn {
+    margin-top: 8px; padding: 6px 12px; background: #ffd166; color: #111;
+    border: none; border-radius: 6px; font-weight: 700; cursor: pointer;
+  }
+  #touch {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    display: none; justify-content: space-between; padding: 0 14px 14px 14px;
+    pointer-events: none;
+  }
+  #touch .pad { display: grid; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(2, 56px); gap: 6px; pointer-events: auto; }
+  #touch button {
+    background: rgba(255, 209, 102, 0.25); color: #fff; border: 1px solid rgba(255, 209, 102, 0.6);
+    border-radius: 10px; font-size: 20px; font-weight: 700; touch-action: none; user-select: none; -webkit-user-select: none;
+  }
+  #touch button:active { background: rgba(255, 209, 102, 0.55); }
+  #touch .jump { width: 76px; height: 76px; border-radius: 50%; align-self: end; pointer-events: auto; font-size: 15px; }
+  @media (pointer: coarse) { #touch { display: flex; } }
+</style>
+<script type="importmap">
+{"imports": {"three": "./three.module.js", "cannon-es": "./cannon-es.js"}}
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <h1>PHYSICS YARD - Cannon-es prototype</h1>
+  <div><span class="keys">WASD / arrows</span> move &nbsp; <span class="keys">SPACE</span> jump &nbsp; <span class="keys">drag</span> look &nbsp; <span class="keys">R</span> reset</div>
+  <div>Try it: push the crates, knock them over, roll the barrels, shove the police van, jump onto the low platform.</div>
+  <div id="stats">loading...</div>
+  <button id="resetBtn">Reset yard</button>
+</div>
+<div id="touch">
+  <div class="pad">
+    <span></span><button id="tUp" aria-label="forward">&#9650;</button><span></span>
+    <button id="tLeft" aria-label="left">&#9664;</button><button id="tDown" aria-label="back">&#9660;</button><button id="tRight" aria-label="right">&#9654;</button>
+  </div>
+  <button id="tJump" class="jump">JUMP</button>
+</div>
+<script type="module" src="./proto.js"></script>
+</body>
+</html>
